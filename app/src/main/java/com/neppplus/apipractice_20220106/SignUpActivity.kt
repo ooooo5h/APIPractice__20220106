@@ -2,9 +2,14 @@ package com.neppplus.apipractice_20220106
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.neppplus.apipractice_20220106.api.APIList
 import com.neppplus.apipractice_20220106.api.ServerAPI
+import com.neppplus.apipractice_20220106.models.BasicResponse
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +29,37 @@ class SignUpActivity : AppCompatActivity() {
             val apiList = retrofit.create(APIList::class.java)
 
 //            추가된 회원가입 기능 활용
-            apiList.putRequestSignUp(inputEmail, inputPw, inputNickname, inputPhoneNum)
+            apiList.putRequestSignUp(inputEmail, inputPw, inputNickname, inputPhoneNum).enqueue(object : Callback<BasicResponse> {
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+
+//                    회원가입 요청을 날리고, DB에 가입까지 진행하고 난 후 서버가 내려준 응답이 돌아왔을 때 실행하는 부분(나중에 실행되는 부분이란 이야기)
+//                    code : 200만 성공 => response.isSuccessful => 코드값이 200인가와 똑같은 질문
+                    if (response.isSuccessful) {
+
+//                        BasicResponse형태로 자동 분석된 응답은 200으로 돌아왔을대만 정상작동함
+                        val br = response.body()!!   // BasicResponse를 추출
+
+//                        회원가입 성공 처리만 br변수이용해서 진행하면 됨
+
+                    }
+                    else {
+//                        400, 403, 404, 500 등 모든 에러가 여기 해당
+
+//                        문제가 발생했기 때문에, BasicResponse 정상 응답 제공 x
+                        val testStr = response.errorBody()!!.string()    // 에러의 경우는, 별도로 에러 본문 확인해야함
+                        Log.d("문제응답", testStr)
+                    }
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                }
+
+
+            })
         }
     }
 }
