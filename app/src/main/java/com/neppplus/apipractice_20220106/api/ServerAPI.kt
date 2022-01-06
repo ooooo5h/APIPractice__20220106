@@ -35,7 +35,6 @@ class ServerAPI {
 //            retrofit이 null이라면 채워줬고, 아니라면 있는 객체를 사용하게 됨
             return retrofit!! // 절대 null일리 없다고 !! 붙여주기
 
-
         }
 
     }
