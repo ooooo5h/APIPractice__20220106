@@ -31,6 +31,10 @@ class MainActivity : BaseActivity() {
 //                    서버가 주는 응답안에 보면, data 안의 reviews 목록 전체를 mReviewList에 추가해주고싶다
                     mReviewList.addAll( br.data.reviews)
 
+//                    리싸이클러뷰 세팅이 완료된 이후에 데이터를 추가한다면, 자동반영 안됨.
+//                    어댑터의 내용이 변경되었으니까 반영해달라는 코드를 추가로 작성해야함
+                    mReviewAdapter.notifyDataSetChanged()
+
                 }
             }
 
