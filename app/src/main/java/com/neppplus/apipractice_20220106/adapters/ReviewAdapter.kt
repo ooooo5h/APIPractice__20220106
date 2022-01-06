@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.neppplus.apipractice_20220106.R
 import com.neppplus.apipractice_20220106.models.ReviewData
 import org.w3c.dom.Text
@@ -30,7 +31,8 @@ class ReviewAdapter(
             txtReviewTitle.text = data.title
             txtUserNickname.text = data.user.nick_name
 
-
+            Glide.with(mContext).load(data.thumbnail_img).into(imgThumbnail)
+            Glide.with(mContext).load(data.user.profile_img).into(imgUserProfile)
 
 
 
