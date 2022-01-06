@@ -1,6 +1,7 @@
 package com.neppplus.apipractice_20220106.api
 
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ServerAPI {
 
@@ -19,8 +20,20 @@ class ServerAPI {
 //        retrofit 변수에 환경설정 + 객체화 => 가져다 쓸 수 있게 하는 기능을 함수로 제공
         fun getRetrofit() : Retrofit {
 
+//            retrofit 변수가 null이라면 아직 안만든 상태니까, 새 객체를 만들어주자
+//            retrofit 변수가 null이 아니라면, 이미 만들어둔게 있다는 이야기니까 있는 객체를 사용하게 하자
+//            하나의 객체를 계속해서 재활용하게 유도하는 패턴을 "싱글톤 패턴"이라고함
 
+            if (retrofit == null) {
+//                 null이면 실제 레트로핏 객체를 생성하기
+                retrofit = Retrofit.Builder()
+                    .baseUrl(BASE_URL)  // 어느 서버안에서 움직일건지 설정
+                    .addConverterFactory(GsonConverterFactory.create())  // JSON응답을 자동으로 분석하는 도구 설치
+                    .build()
+            }
 
+//            retrofit이 null이라면 채워줬고, 아니라면 있는 객체를 사용하게 됨
+            return retrofit!! // 절대 null일리 없다고 !! 붙여주기
 
 
         }
