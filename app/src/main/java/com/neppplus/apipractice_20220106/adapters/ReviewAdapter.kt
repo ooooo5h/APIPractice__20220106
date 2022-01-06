@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.apipractice_20220106.R
 import com.neppplus.apipractice_20220106.models.ReviewData
+import org.w3c.dom.Text
 
 
 class ReviewAdapter(
@@ -19,8 +20,17 @@ class ReviewAdapter(
 
     inner class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
 
+        val imgThumbnail = row.findViewById<ImageView>(R.id.imgThumbnail)
+        val imgUserProfile = row.findViewById<ImageView>(R.id.imgUserProfile)
+        val txtUserNickname = row.findViewById<TextView>(R.id.txtUserNickname)
+        val txtReviewTitle = row.findViewById<TextView>(R.id.txtReviewTitle)
 
         fun bind(data: ReviewData) {
+
+            txtReviewTitle.text = data.title
+            txtUserNickname.text = data.user.nick_name
+
+
 
 
 
