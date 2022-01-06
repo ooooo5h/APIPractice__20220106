@@ -1,5 +1,6 @@
 package com.neppplus.apipractice_20220106
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -66,6 +67,12 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        btnSignUp.setOnClickListener {
+//            단순 화면 이동만 구현
+            val myIntent = Intent(this, SignUpActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
     }
 }
