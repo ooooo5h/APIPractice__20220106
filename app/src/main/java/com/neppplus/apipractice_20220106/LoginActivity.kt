@@ -7,15 +7,15 @@ import android.widget.Toast
 import com.neppplus.apipractice_20220106.api.APIList
 import com.neppplus.apipractice_20220106.api.ServerAPI
 import com.neppplus.apipractice_20220106.models.BasicResponse
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         btnLogin.setOnClickListener {
 
@@ -47,13 +47,13 @@ class MainActivity : AppCompatActivity() {
                         val br = response.body()!!   // 서버의 응답 중에 본문(body)을 자동 분석된 BasicResponse형태로 저장
                         val loginUserNick = br.data.user.nick_name
 
-                        Toast.makeText(this@MainActivity, "${loginUserNick}님, 환영합니다!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "${loginUserNick}님, 환영합니다!", Toast.LENGTH_SHORT).show()
                         
                         
                     }
                     else {
 //                        로그인 실패 (아이디 or 비밀번호 불일치)
-                        Toast.makeText(this@MainActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
                     }
                 }
 
