@@ -2,6 +2,8 @@ package com.neppplus.apipractice_20220106
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.neppplus.apipractice_20220106.api.APIList
+import com.neppplus.apipractice_20220106.api.ServerAPI
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -17,6 +19,11 @@ class SignUpActivity : AppCompatActivity() {
             val inputNickname = edtNickname.text.toString()
             val inputPhoneNum = edtPhone.text.toString()
 
+//            API 호출(회원가입기능) => 서버에 접속하게 해주는 ServerAPI + APIList 조합해서 호출하겠다는 뜻
+            val retrofit = ServerAPI.getRetrofit()
+            val apiList = retrofit.create(APIList::class.java)
+
+            apiList.
         }
     }
 }
