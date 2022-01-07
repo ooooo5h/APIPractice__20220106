@@ -34,6 +34,8 @@ class MyProfileActivity : BaseActivity() {
 //                    UI에 닉네임 등 반영해보기
                     txtMyNickname.text = myInfo.nick_name
                     Glide.with(mContext).load(myInfo.profile_img).into(imgMyProfile)
+                    txtPhoneNum.text = myInfo.phone
+                    txtEmail.text = myInfo.email
 
                 }
 
