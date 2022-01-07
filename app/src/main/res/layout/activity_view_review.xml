@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imgRevieThumbnail"
+                android:id="@+id/imgReviewThumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
@@ -91,6 +91,7 @@
                     android:padding="10dp">
 
                     <com.willy.ratingbar.ScaleRatingBar
+                        app:srb_stepSize="0.5"
                         android:id="@+id/scoreRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package com.neppplus.apipractice_20220106
 
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.neppplus.apipractice_20220106.models.BasicResponse
 import com.neppplus.apipractice_20220106.models.ReviewData
 import kotlinx.android.synthetic.main.activity_view_review.*
@@ -23,6 +24,11 @@ class ViewReviewActivity : BaseActivity() {
 
                 txtReviewTitle.text = newReviewData.title
                 txtReviewContent.text = newReviewData.content
+
+                Glide.with(mContext).load(newReviewData.thumbnail_img).into(imgReviewThumbnail)
+                Glide.with(mContext).load(newReviewData.user.profile_img).into(imgWriterProfile)
+                txtWriterNickname.text = newReviewData.user.nick_name
+                scoreRatingBar.rating = newReviewData.score
 
             }
 

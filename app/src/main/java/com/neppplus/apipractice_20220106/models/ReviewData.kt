@@ -6,7 +6,7 @@ class ReviewData(
     val id : Int,
     val title : String,
     val content : String,
-    val score : Double,
+    val score : Float,
     val thumbnail_img : String,
     val user : UserData,   // 기존에 만든 UserData 재활용
 ) : Serializable{
