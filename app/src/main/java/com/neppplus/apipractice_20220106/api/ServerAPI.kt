@@ -1,5 +1,7 @@
 package com.neppplus.apipractice_20220106.api
 
+import com.neppplus.apipractice_20220106.utils.ContextUtil
+import okhttp3.Interceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,17 +20,40 @@ class ServerAPI {
         private var retrofit : Retrofit? = null  // 서버 연결을 전담하는 변수. 기본적으로는 아직 안만든 상태기때문에 null대입
 
 //        retrofit 변수에 환경설정 + 객체화 => 가져다 쓸 수 있게 하는 기능을 함수로 제공
-        fun getRetrofit() : Retrofit {
+        fun getRetrofit(context : Context) : Retrofit {
 
 //            retrofit 변수가 null이라면 아직 안만든 상태니까, 새 객체를 만들어주자
 //            retrofit 변수가 null이 아니라면, 이미 만들어둔게 있다는 이야기니까 있는 객체를 사용하게 하자
 //            하나의 객체를 계속해서 재활용하게 유도하는 패턴을 "싱글톤 패턴"이라고함
 
             if (retrofit == null) {
+
+
                 
 //                토큰의 경우, 여러 API 함수에서 사용해야 하고 + 매번 같은 토큰값이 입력된다(Context.getToken())
 //                자동화하면 훨씬 편하겠지?
 //                어떻게? => 레트로핏 객체를 생성하기 전에, 토큰에 관련된 세팅을 코드로 추가해두자
+
+//                API 요청이 만들어 질 때 가로채서 헤더를 추가해주자
+//                헤더가 붙여지고 나서, 나머지 API 요청을 실행(자동으로 헤더 첨부 효과 발생)
+
+                val interceptor = Interceptor {
+                    with(it) {
+
+//                        새 리퀘스트를 만들자 어떤? 헤더가 첨부된 리퀘스트
+
+                        val newRequest = request().newBuilder()
+                            .addHeader("X-Http-Token", ContextUtil.getToken(context))
+                            .build()
+
+//                        완성된 새 리퀘스트로 작업을 이어가게 하자
+                        proceed(newRequest)
+                    }
+
+
+                }
+
+
                 
                 
 //                 null이면 실제 레트로핏 객체를 생성하기
