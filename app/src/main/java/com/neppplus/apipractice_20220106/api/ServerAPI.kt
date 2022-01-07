@@ -25,6 +25,12 @@ class ServerAPI {
 //            하나의 객체를 계속해서 재활용하게 유도하는 패턴을 "싱글톤 패턴"이라고함
 
             if (retrofit == null) {
+                
+//                토큰의 경우, 여러 API 함수에서 사용해야 하고 + 매번 같은 토큰값이 입력된다(Context.getToken())
+//                자동화하면 훨씬 편하겠지?
+//                어떻게? => 레트로핏 객체를 생성하기 전에, 토큰에 관련된 세팅을 코드로 추가해두자
+                
+                
 //                 null이면 실제 레트로핏 객체를 생성하기
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)  // 어느 서버안에서 움직일건지 설정
