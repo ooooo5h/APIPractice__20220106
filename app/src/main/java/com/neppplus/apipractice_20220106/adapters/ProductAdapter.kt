@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.neppplus.apipractice_20220106.EditReviewActivity
 import com.neppplus.apipractice_20220106.R
 import com.neppplus.apipractice_20220106.models.ProductData
 import com.neppplus.apipractice_20220106.models.ReviewData
@@ -44,7 +45,10 @@ class ProductAdapter(
             Glide.with(mContext).load(data.store.logoURL).into(imgStoreLogo)
             
             btnWriteReview.setOnClickListener {
-                Toast.makeText(mContext, "리뷰 버튼 눌림", Toast.LENGTH_SHORT).show()
+
+                val myIntent = Intent(mContext, EditReviewActivity::class.java)
+                myIntent.putExtra("product", data)
+                mContext.startActivity(myIntent)
                 
             }
        }
