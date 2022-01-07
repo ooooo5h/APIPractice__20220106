@@ -2,6 +2,7 @@ package com.neppplus.apipractice_20220106.api
 
 import com.neppplus.apipractice_20220106.utils.ContextUtil
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -49,18 +50,18 @@ class ServerAPI {
 //                        완성된 새 리퀘스트로 작업을 이어가게 하자
                         proceed(newRequest)
                     }
-
-
                 }
 
+//                위에 적은 인터셉터를 적용하는 통신 체계를 만들어야함(클라이언트의 기능을 수정)
+                val myClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
-                
-                
-//                 null이면 실제 레트로핏 객체를 생성하기
+//                 null이면 실제 레트로핏 객체를 생성하기 => 인터셉터 적용하는 클라이언트를 적용하도록 수정해야함
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)  // 어느 서버안에서 움직일건지 설정
                     .addConverterFactory(GsonConverterFactory.create())  // JSON응답을 자동으로 분석하는 도구 설치
+                    .client(myClient)
                     .build()
+
             }
 
 //            retrofit이 null이라면 채워줬고, 아니라면 있는 객체를 사용하게 됨

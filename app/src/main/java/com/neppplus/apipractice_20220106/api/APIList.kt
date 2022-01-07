@@ -44,9 +44,7 @@ interface APIList {
 //    * 내 정보 가져오기 (토큰값을 첨부할 필요가 있음)
 
     @GET("/user")
-    fun getRequestMyInfo(
-        @Header("X-Http-Token") token : String,
-    ) : Call<BasicResponse>
+    fun getRequestMyInfo() : Call<BasicResponse>
 
     
 }
