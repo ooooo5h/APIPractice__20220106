@@ -20,7 +20,7 @@ class MyProfileActivity : BaseActivity() {
 //        ()안에 저장된 토큰값을 꺼내와야함 어떻게?
 //        ContextUtil로 저장해둔 토큰을 가져오자
 
-        apiList.getRequestMyInfo(ContextUtil.getToken(mContext)).enqueue(object : Callback<BasicResponse>{
+        apiList.getRequestMyInfo().enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
                 if (response.isSuccessful) {

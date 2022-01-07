@@ -26,7 +26,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
 //        레트로핏 관련 설정들을 여기서 진행한다(모든 화면들이 자동으로 실행되도록)
-        retrofit = ServerAPI.getRetrofit()
+        retrofit = ServerAPI.getRetrofit(mContext)
         apiList = retrofit.create(APIList::class.java)
 
 
