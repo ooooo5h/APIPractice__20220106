@@ -27,7 +27,13 @@ class ContextUtil {
 //          pref.edit().putString(TOKEN, token)   // String 하나 추가 기록 메모 작성
             pref.edit().putString(TOKEN, token).apply()  // 저장(apply)
         }
-        
+
+        fun getToken(context: Context) : String {
+            val pref =context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)   // 메모장 파일 열었음
+            return pref.getString(TOKEN, "")!!   // 코틀린에서의 null관리 기법 : getString이 절대 null이 아니라고 우겨서 return해야 오류가 없어짐
+
+
+        }
     }
     
 }
